@@ -58,7 +58,7 @@ app.use(function(err, req, res, next) {
 
 var pg = require('pg');
 
-var connString = "postgres://localhost/bookslist";
+var connString = "postgres://localhost/gutenberg_data";
 
 var client = new pg.Client(connString);
 client.connect(function(err) {
