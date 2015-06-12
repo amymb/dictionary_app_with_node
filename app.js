@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -56,5 +55,23 @@ app.use(function(err, req, res, next) {
   });
 });
 
+
+var pg = require('pg');
+
+var connString = "postgres://localhost/bookslist";
+
+var client = new pg.Client(connString);
+client.connect(function(err) {
+  if(err) {
+    return console.error('could not connect to postgres', err);
+  }
+  client.query('SELECT NOW() AS "theTime"', function(err, result) {
+    if(err) {
+      return console.error('error running query', err);
+    }
+    console.log("you are connected like a boss", result.rows[0].theTime);
+    client.end();
+  });
+});
 
 module.exports = app;
