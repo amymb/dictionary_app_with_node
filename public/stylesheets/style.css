@@ -21,8 +21,9 @@ a {
 .featured-quote:first-letter{
   text-transform: uppercase;
 }
+
 .featured-quote {
-  padding-top: 100px;
+  padding-top: 80px;
   color: #424242;
   font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
 	letter-spacing:0.1em;
@@ -33,7 +34,8 @@ a {
 	font-size: 18pt;
 	font-variant: small-caps;
 }
-.super-class{
-  font:bold;
-  font-color: red;
+
+.super{
+  font-weight:bold;
+  color: #800000;
 }

@@ -8,7 +8,6 @@ app.directive('abSlider', function($timeout) {
     scope: {
       quotes: '='
     },
-
     link: function(scope, elem, attrs) {
       scope.$watch('quotes', function(newVal, oldVal) {
         if (newVal){
@@ -31,9 +30,6 @@ app.directive('abSlider', function($timeout) {
           });
         }
       });
-
-
-
     },
     templateUrl: '/slider'
   };

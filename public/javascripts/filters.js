@@ -11,7 +11,7 @@ app.filter('revisedQuotesForDisplay', function() {
     var boldedWordInArray = array.map(function(value){
       if (value.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1){
         index = array.indexOf(value);
-        return '<span class="super-class">' + value + '</span>'
+        return '<span class="super">' + value + '</span>'
       }else{
         return value
         };
