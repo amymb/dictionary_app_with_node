@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module("myapp", ["quoteDisplayFilter"]);
+var app = angular.module("myapp", ["quoteDisplayFilter", "ngSanitize", 'sliderApp']);
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
@@ -12,9 +12,9 @@ function shuffleArray(array) {
 }
 
 function compare(a, b){
-  if (a.last_nom < b.last_nom)
+  if (a.votes < b.votes)
     return -1;
-  if (a.last_nom > b.last_nom)
+  if (a.votes> b.votes)
     return 1;
   return 0;
 }

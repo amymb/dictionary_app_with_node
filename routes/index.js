@@ -9,6 +9,11 @@ router.get('/', function(req, res){
   res.render('index')
 });
 
+router.get('/slider', function(req, res){
+  res.render('slider');
+})
+
+
 router.get('/paragraphs', function(req, res) {
   var results = [];
   pg.connect(connString, function(err, client, done){

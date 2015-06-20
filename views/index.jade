@@ -4,7 +4,7 @@ block content
 
   div(ng-controller="mainController")
     div(class="landing-header")
-      div(class="navbar navbar-default")
+      div(class="navbar navbar-default navbar-fixed-top ")
         div(class="container-fluid")
           form(class="navbar-form navbar-left" role="search")
             div(class="form-group")
@@ -13,6 +13,5 @@ block content
       div(class="container-fluid")
         div(class="row")
           div(class="col-md-6")
-          div(class="col-md-6 featured-quote" ng-show="quotes") "{{quotes[0].paragraphtext | revisedQuotesForDisplay}}"
-            p
-              i --{{quotes[0].title}}
+          div(class="col-md-6 featured-quote")
+            ab-slider(quotes="quotes")

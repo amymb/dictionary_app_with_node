@@ -1,0 +1,10 @@
+div(class="ab-slider")
+  div(class="slide" ng-repeat="quote in quotes" ng-show ="quote.visible")
+    p {{quote.paragraphtext | revisedQuotesForDisplay}}
+      i --{{quote.title}}
+    button(type="button" class="btn btn-primary") More
+  div(class="arrows")
+    a(href="#" ng-click ="prev()")
+      img(src="img/left-arrow.png")
+    a(href="#" ng-click = "next()")
+      img(src="img/right-arrow.png")

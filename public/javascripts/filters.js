@@ -6,11 +6,12 @@ app.filter('revisedQuotesForDisplay', function() {
     if (!quote || !quote.length) { return; }
     var searchTerm = document.getElementById("searchTerm").value;
     var index;
+    console.log(index)
     var array = quote.split(" ");
     var boldedWordInArray = array.map(function(value){
       if (value.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1){
         index = array.indexOf(value);
-        return '<span class="super-class">'+ value +'</span>'
+        return '<span class="super-class">' + value + '</span>'
       }else{
         return value
         };
