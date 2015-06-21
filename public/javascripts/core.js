@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module("myapp", ["quoteDisplayFilter", "ngSanitize", 'sliderApp']);
+var app = angular.module("myapp", ["quoteDisplayFilter", "ngSanitize", 'sliderApp', 'ui.bootstrap']);
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
@@ -21,6 +21,7 @@ function compare(a, b){
 
 app.controller('mainController', function ($scope, $http){
   $scope.searchFunction = function(searchTerm){
+    console.log(searchTerm)
     var url = '/api/' + (searchTerm);
     $http({method: 'GET', url: url}).
     success(function(data, status, headers, config) {
@@ -31,5 +32,38 @@ app.controller('mainController', function ($scope, $http){
         //In case your server respond with a 4XX or 5XX error code
     });
 
+  };
+});
+
+app.controller("quoteController", function($scope, $modal) {
+  console.log("i'm in the quote controller")
+  $scope.animationsEnabled = true;
+  $scope.showModal= function(){
+    console.log("and i'm in the scope.open")
+    console.log($scope.quote)
+    var modalInstance = $modal.open({
+      animation: false,
+      templateUrl: '/quote',
+      controller: 'ModalDialogController',
+    });
+
+    modalInstance.result.then(
+      function () {
+        alert("OK");
+      },
+      function () {
+        alert("Cancel");
+      }
+    );
+  }
+})
+
+app.controller("ModalDialogController", function ($scope, $modalInstance) {
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
   };
 });

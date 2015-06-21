@@ -1,0 +1,14 @@
+div(class="ab-slider")
+  div(class="slide" ng-repeat="quote in quotes" ng-show ="quote.visible")
+    p(ng-bind-html = "quote.paragraphtext | revisedQuotesForDisplay")
+    i --{{quote.title}}
+    br
+    div(class="row arrows" ng-show = "quotes")
+      div(class="col-md-4")
+        a(href="#" ng-click ="prev()")
+          span(class="glyphicon glyphicon-chevron-left" style="color:gray")
+      div(class="col-md-4" ng-controller="quoteController")
+        button(type="button" class="btn btn-primary" ng-click="showModal()") More
+      div(class="col-md-4")
+        a(href="#" ng-click="next()")
+          span(class="glyphicon glyphicon-chevron-right" style="color:gray")

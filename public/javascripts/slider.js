@@ -1,7 +1,6 @@
-var app = angular.module('sliderApp', []);
+var app = angular.module('sliderApp', ['ngAnimate']);
 
 app.directive('abSlider', function($timeout) {
-  console.log("hi")
   return {
     restrict: 'E',
     replace: true,
@@ -15,7 +14,6 @@ app.directive('abSlider', function($timeout) {
           scope.currentIndex = 0; // Initially the index is at the first image
 
           scope.next = function() {
-              console.log(scope.currentIndex)
               scope.currentIndex < scope.quotes.length - 1 ? scope.currentIndex++ : scope.currentIndex = 0;
             };
 

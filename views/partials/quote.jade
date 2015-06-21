@@ -1,0 +1,10 @@
+script(type="text/ng-template" id="quote.jade")
+div(class="modal-content")
+  div(class="modal-header")
+    button(type="button" class="close" ng-click="cancel()" aria-hidden="true") &times;
+    h4(class="modal-title") Yes or No?
+  div(class="modal-body")
+    p It's your call...
+  div(class="modal-footer")
+    button(type="button" ng-click="cancel()" class="btn btn-default") No
+    button(type="button" ng-click="ok()" class="btn btn-primary") Yes

@@ -6,7 +6,6 @@ app.filter('revisedQuotesForDisplay', function() {
     if (!quote || !quote.length) { return; }
     var searchTerm = document.getElementById("searchTerm").value;
     var index;
-    console.log(index)
     var array = quote.split(" ");
     var boldedWordInArray = array.map(function(value){
       if (value.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1){
@@ -16,15 +15,15 @@ app.filter('revisedQuotesForDisplay', function() {
         return value
         };
     });
-    if(boldedWordInArray.length >=60){
+    if(boldedWordInArray.length >=50){
       var newQuote = quote;
-      if (index >=30){
-        var spliceAt = index - 30;
-        var newQuoteBegin = boldedWordInArray.splice(spliceAt, 60);
+      if (index >=25){
+        var spliceAt = index - 25;
+        var newQuoteBegin = boldedWordInArray.splice(spliceAt, 50);
         newQuoteBegin.unshift("...")
         newQuote = newQuoteBegin.join(" ") + "...";
       }else{
-        newQuote = boldedWordInArray.splice(0, 60).join(" ") + "...";
+        newQuote = boldedWordInArray.splice(0, 25).join(" ") + "...";
       }
       return newQuote;
     }else{

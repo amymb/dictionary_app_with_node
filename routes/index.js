@@ -5,13 +5,6 @@ var connString = "postgres://localhost/gutenberg_data";
 var client = new pg.Client(connString)
 /* GET home page. */
 
-router.get('/', function(req, res){
-  res.render('index')
-});
-
-router.get('/slider', function(req, res){
-  res.render('slider');
-})
 
 
 router.get('/paragraphs', function(req, res) {
@@ -71,5 +64,20 @@ router.get('/books', function(req, res){
     }
   });
 });
+
+router.get('/slider', function(req, res){
+  res.render('partials/slider.jade')
+});
+
+
+router.get('/quote', function(req, res){
+  res.render('partials/quote.jade')
+});
+
+router.get('/', function(req, res) {
+  res.render('index.jade'); // load our public/index.html file
+});
+
+
 
 module.exports = router;
