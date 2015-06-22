@@ -12,9 +12,10 @@ function shuffleArray(array) {
 }
 
 function compare(a, b){
-  if (a.votes < b.votes)
+
+  if ((a.upvotes-a.downvotes) < (b.upvotes-b.downvotes))
     return -1;
-  if (a.votes> b.votes)
+  if ((a.upvotes-a.downvotes) > (b.upvotes - b.downvotes))
     return 1;
   return 0;
 }
