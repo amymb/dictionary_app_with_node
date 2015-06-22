@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var connString = "postgres://localhost/gutenberg_data";
+var connString = process.env.PG_CONNECTION_STRING;
 var client = new pg.Client(connString)
 /* GET home page. */
 
@@ -60,7 +60,7 @@ router.post('/paragraphs/:id/downvotes', function(req, res){
     if (err) return console.log(err);
     var query = client.query("UPDATE paragraphs SET downvotes = downvotes + 1 WHERE id = $1", [req.params.id]);
     query.on('end', function(){
-      done();    
+      done();
     });
   });
 });

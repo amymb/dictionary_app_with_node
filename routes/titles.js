@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var connString = "postgres://localhost/gutenberg_data";
+var connString = process.env.PG_CONNECTION_STRING;
 
 
 var client = new pg.Client(connString);
