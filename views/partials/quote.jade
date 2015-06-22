@@ -2,9 +2,14 @@ script(type="text/ng-template" id="quote.jade")
 div(class="modal-content")
   div(class="modal-header")
     button(type="button" class="close" ng-click="cancel()" aria-hidden="true") &times;
-    h4(class="modal-title") Yes or No?
+    h4(class="modal-title") From #[em {{Quote.title}} ] ({{Quote.year | year}})
   div(class="modal-body")
-    p It's your call...
+    p {{Quote.paragraphtext}}
+    div(class = "record-vote" style="text-align:right")
+      a(href= "#" ng-click="upvote()")
+        span(class="glyphicon glyphicon-menu-up" style="color:black")
+      a(href= "#" ng-click="downvote()")
+        span(class="glyphicon glyphicon-menu-down" style="color:black")
   div(class="modal-footer")
-    button(type="button" ng-click="cancel()" class="btn btn-default") No
-    button(type="button" ng-click="ok()" class="btn btn-primary") Yes
+    div(class="ok")
+      button(type="button" ng-click="ok()" class="btn btn-primary") OK

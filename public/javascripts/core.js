@@ -36,29 +36,34 @@ app.controller('mainController', function ($scope, $http){
 });
 
 app.controller("quoteController", function($scope, $modal) {
-  console.log("i'm in the quote controller")
   $scope.animationsEnabled = true;
-  $scope.showModal= function(){
+  $scope.showModal= function(quote){
     console.log("and i'm in the scope.open")
-    console.log($scope.quote)
     var modalInstance = $modal.open({
       animation: false,
       templateUrl: '/quote',
       controller: 'ModalDialogController',
-    });
-
-    modalInstance.result.then(
-      function () {
-        alert("OK");
-      },
-      function () {
-        alert("Cancel");
+      resolve: {
+        quote: function(){
+          console.log(quote.paragraphtext)
+          return quote;
+        }
       }
-    );
+    });
+    modalInstance.result.then();
   }
 })
 
-app.controller("ModalDialogController", function ($scope, $modalInstance) {
+app.controller("ModalDialogController", function ($scope, $modalInstance, quote) {
+  $scope.Quote = quote;
+
+  $scope.upvote = function(){
+
+  };
+
+  $scope.downvote = function(){
+    
+  }
   $scope.ok = function () {
     $modalInstance.close();
   };

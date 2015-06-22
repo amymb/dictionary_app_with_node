@@ -30,7 +30,7 @@ router.get('/api/:search', function(req, res, next) {
   pg.connect(connString, function(err, client, done) {
     var results = [];
     if (err) return console.log(err);
-    var query = client.query("SELECT paragraphtext, bookid, votes, title FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid WHERE to_tsvector('english', paragraphtext) @@to_tsquery('english', $1)", [req.params.search]);
+    var query = client.query("SELECT paragraphtext, bookid, upvotes, downvotes, title, year FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid WHERE to_tsvector('english', paragraphtext) @@to_tsquery('english', $1)", [req.params.search]);
     query.on('row', function (row){
       results.push(row);
     });
@@ -44,7 +44,26 @@ router.get('/api/:search', function(req, res, next) {
 });
 
 
+router.post('/paragraphs/:id/upvotes', function(req, res){
+  pg.connect(connString, function(err, client, done){
+    if (err) return console.log(err);
+    var query = client.query("UPDATE paragraphs SET upvotes = upvotes + 1 WHERE id = $1", [req.params.id]);
+    query.on('end', function(){
+      done();
 
+    });
+  });
+});
+
+router.post('/paragraphs/:id/downvotes', function(req, res){
+  pg.connect(connString, function(err, client, done){
+    if (err) return console.log(err);
+    var query = client.query("UPDATE paragraphs SET downvotes = downvotes + 1 WHERE id = $1", [req.params.id]);
+    query.on('end', function(){
+      done();    
+    });
+  });
+});
 
 
 router.get('/books', function(req, res){

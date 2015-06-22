@@ -31,3 +31,16 @@ app.filter('revisedQuotesForDisplay', function() {
     }
   }
 });
+
+app.filter ('year', function(){
+  return function(year){
+    if (!year){
+      return "unknown";
+    } else if (year.length === 4) {
+      return year;
+    }else{
+      var spliceAt = year.split("").indexOf("/") + 1;
+      return year.split("").splice(spliceAt, 4).join("");
+    };
+  }
+})
