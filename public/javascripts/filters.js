@@ -23,7 +23,7 @@ app.filter('revisedQuotesForDisplay', function() {
         newQuoteBegin.unshift("...")
         newQuote = newQuoteBegin.join(" ") + "...";
       }else{
-        newQuote = boldedWordInArray.splice(0, 25).join(" ") + "...";
+        newQuote = boldedWordInArray.splice(0, 50).join(" ") + "...";
       }
       return newQuote;
     }else{
