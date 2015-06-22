@@ -45,7 +45,6 @@ app.controller("quoteController", function($scope, $modal) {
       controller: 'ModalDialogController',
       resolve: {
         quote: function(){
-          console.log(quote.paragraphtext)
           return quote;
         }
       }
@@ -54,16 +53,33 @@ app.controller("quoteController", function($scope, $modal) {
   }
 })
 
-app.controller("ModalDialogController", function ($scope, $modalInstance, quote) {
+app.controller("ModalDialogController", function ($scope, $modalInstance, $http, quote) {
   $scope.Quote = quote;
 
   $scope.upvote = function(){
-
+    $scope.Quote.upvotes += 1;
+    var url = '/paragraphs/' + quote.id + '/upvotes';
+    $http({method: 'POST', url: url})
+    .success(function(){
+      console.log("upvote recorded!")
+    })
+    .error(function(){
+      console.log("something went wrong")
+    })
   };
 
   $scope.downvote = function(){
-    
-  }
+    $scope.Quote.downvotes +=1
+    var url = '/paragraphs/' + quote.id + '/downvotes';
+    $http({method: 'POST', url: url})
+    .success(function(){
+      console.log("downvote recorded!")
+    })
+    .error(function(){
+      console.log("something went wrong")
+    })
+  };
+
   $scope.ok = function () {
     $modalInstance.close();
   };

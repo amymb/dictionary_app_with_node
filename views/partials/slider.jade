@@ -8,7 +8,7 @@ div(class="ab-slider")
         a(href="#" ng-click ="prev()")
           span(class="glyphicon glyphicon-chevron-left" style="color:gray")
       div(class="col-md-4" ng-controller="quoteController")
-        button(type="button" class="btn btn-primary" ng-click="showModal(quote)") More
+        button(type="button" class="btn btn-primary" ng-click="showModal(quote)" ng-init="initFirst()") More
       div(class="col-md-4")
         a(href="#" ng-click="next()")
           span(class="glyphicon glyphicon-chevron-right" style="color:gray")

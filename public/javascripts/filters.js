@@ -44,3 +44,13 @@ app.filter ('year', function(){
     };
   }
 })
+
+app.filter('votesNull', function(){
+  return function(votes){
+    if (!votes){
+      return 0;
+    }else{
+      return votes;
+    };
+  };
+});

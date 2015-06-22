@@ -8,8 +8,10 @@ div(class="modal-content")
     div(class = "record-vote" style="text-align:right")
       a(href= "#" ng-click="upvote()")
         span(class="glyphicon glyphicon-menu-up" style="color:black")
+        p {{Quote.upvotes | votesNull}}
       a(href= "#" ng-click="downvote()")
         span(class="glyphicon glyphicon-menu-down" style="color:black")
+        p {{Quote.downvotes | votesNull}}
   div(class="modal-footer")
     div(class="ok")
       button(type="button" ng-click="ok()" class="btn btn-primary") OK
