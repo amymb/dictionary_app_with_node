@@ -9,9 +9,36 @@ block content
           form(class="navbar-form navbar-left" role="search")
             div(class="form-group")
               input(type="text" class="form-control" placeholder="Find a word" id="searchTerm" ng-model="formData")
-            button(type="submit" class="btn btn-default" ng-click = "searchFunction(formData)") Submit
+            button(type="submit" class="btn btn-default" ng-click = "searchFunction(formData); defineFunction(formData)") Submit
       div(class="container-fluid")
         div(class="row")
           div(class="col-md-6")
           div(class="col-md-6 featured-quote")
             ab-slider(quotes="quotes")
+    div(class="container")
+      div(class="definitions")
+        h3 {{searchTerm}} <em>{{definitions[0].partOfSpeech | abbreviate}}</em>
+        ol
+          li(ng-repeat="definition in definitions") {{definition.text}}
+      br
+      br
+      br
+      div(class="row number-badges")
+        div(class="col-md-4")
+          div(class="number-badge-1")
+            div(class="number-circle")
+              div(class="circle-text") 165000
+            br
+            div(class="text-descriptor") Total paragraphs in <br />the complete works
+        div(class="col-md-4")
+          div(class="number-badge-2")
+            div(class="number-circle" id="specific-word")
+              div(class="circle-text"){{numberofuses}}
+            br
+            div(class="text-descriptor") Paragraphs containing <span class="search-term">"{{searchTerm}}"</span>
+        div(class="col-md-4")
+          div(class="number-badge-3")
+            div(class="number-circle" id="word-in-book")
+              div(class="circle-text")
+            br
+            div(class="text-descriptor") Paragraphs containing <br/> <span class="search-term"> "{{searchTerm}}"</span> in <br/>

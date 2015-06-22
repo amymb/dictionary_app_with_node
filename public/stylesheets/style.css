@@ -23,7 +23,7 @@ p.featured-quote:first-letter{
 }
 
 .featured-quote {
-  padding-top: 80px;
+
   color: #424242;
   font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
 	letter-spacing:0.1em;
@@ -56,11 +56,92 @@ p.featured-quote:first-letter{
   opacity: 1;
 }
 
+.slider {
+  position: relative;
+  padding: 5px;
+  width: 610px;
 
+}
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 100px;
+}
+
+.definitions,
 .navbar,
 .modal-content{
   font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
   letter-spacing:0.1em;
   text-align:center;
   line-height: 145%;
+}
+
+.number-badges{
+  font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+}
+
+.number-badge-1{
+  float: right;
+  position: relative;
+  text-align: center;
+}
+
+.number-badge-2{
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+}
+
+.number-badge-3{
+  float: left;
+  position: relative;
+  text-align: center;
+
+}
+.number-circle {
+  border-radius: 50%;
+  behavior: url(PIE.htc);
+    /*position: relative;
+    float: right;*/
+  width: 140px;
+  height: 140px;
+  padding: 10px;
+
+
+  background-image: url("../img/Oliver_Twist1.png");
+  border: 2px solid #666;
+  color: #800000;
+  /*text-align: center;*/
+    /*font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;*/
+    /*letter-spacing:0.1em;*/
+  line-height: 110px;
+  font-size: 24pt;
+  font-weight: bold;
+  background-position:20% 20%;
+  text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
+}
+
+#specific-word{
+  background-image: url("../img/Oliver_Twist2.jpg");
+  background-position:50% 50%;
+  float: none;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#word-in-book{
+  background-image: url("../img/Oliver_Twise3.png");
+  background-position:50% 50%;
+  /*float: left;*/
+}
+
+.search-term{
+  color: #800000;
 }

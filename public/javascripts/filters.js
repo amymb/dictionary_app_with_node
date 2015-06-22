@@ -45,6 +45,17 @@ app.filter ('year', function(){
   }
 })
 
+// app.filter('quotes', function(){
+//   return function(quotes){
+//     var emptyObj = {};
+//     var quotesPerBook = quotes.reduce(function(accum, quote){
+//       (!accum[quote.title]) ? accum[quote.title] = 1 : accum[quote.title]+=1;
+//       return emptyObj;
+//     }, emptyObj);
+//     console.log(emptyObj)
+//   }
+// })
+
 app.filter('votesNull', function(){
   return function(votes){
     if (!votes){
@@ -54,3 +65,11 @@ app.filter('votesNull', function(){
     };
   };
 });
+
+app.filter('abbreviate', function(){
+  return function(word){
+    if(!word) return;
+    var m = word.slice(0, 1)
+    return m + "."
+  }
+})

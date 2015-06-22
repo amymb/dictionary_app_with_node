@@ -25,12 +25,19 @@ router.get('/paragraphs/:id', function(req, res) {
   });
 });
 
+router.get("/rest/getenv", function(req, res) {
+  var env = process.env.WORDNIK_API_KEY;
+  res.json({result: env});
+});
+
 router.get('/api/:search', function(req, res, next) {
   console.log(req.params)
   pg.connect(connString, function(err, client, done) {
     var results = [];
+    var normalizedSearch = req.params.search.replace(/ /g, "&")
+    console.log(normalizedSearch)
     if (err) return console.log(err);
-    var query = client.query("SELECT paragraphs.paragraphtext, paragraphs.bookid, paragraphs.upvotes, paragraphs.downvotes, books.title, books.year, paragraphs.id FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid WHERE to_tsvector('english', paragraphtext) @@to_tsquery('english', $1)", [req.params.search]);
+    var query = client.query("SELECT paragraphs.paragraphtext, paragraphs.bookid, paragraphs.upvotes, paragraphs.downvotes, books.title, books.year, paragraphs.id FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid WHERE to_tsvector('english', paragraphtext) @@to_tsquery('english', $1)", [normalizedSearch]);
     query.on('row', function (row){
       results.push(row);
     });
