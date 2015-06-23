@@ -1,5 +1,4 @@
 var pg = require('pg');
-var pgpLib = require('pg-promise');
 var connString = "postgres://amybertken:password@localhost/bookslist"
 
 var client = new pg.Client(connString);

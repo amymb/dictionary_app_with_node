@@ -1,6 +1,5 @@
 var pg = require('pg');
 var connString = "postgres://amybertken:password@localhost/gutenberg_data";
-var pgpLib = require('pg-promise');
 var pgp = pgpLib()
 var db = pgp(connString)
 var promise = require('promise')
