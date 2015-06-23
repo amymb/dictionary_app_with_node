@@ -45,16 +45,7 @@ app.filter ('year', function(){
   }
 })
 
-// app.filter('quotes', function(){
-//   return function(quotes){
-//     var emptyObj = {};
-//     var quotesPerBook = quotes.reduce(function(accum, quote){
-//       (!accum[quote.title]) ? accum[quote.title] = 1 : accum[quote.title]+=1;
-//       return emptyObj;
-//     }, emptyObj);
-//     console.log(emptyObj)
-//   }
-// })
+
 
 app.filter('votesNull', function(){
   return function(votes){
