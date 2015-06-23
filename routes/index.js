@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var connString = process.env.PG_CONNECTION_STRING;
+var connString = process.env.DATABASE_URL;
 var client = new pg.Client(connString)
 /* GET home page. */
 

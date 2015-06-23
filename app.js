@@ -68,7 +68,7 @@ app.use(function(err, req, res, next) {
 
 var pg = require('pg');
 
-var connString = process.env.PG_CONNECTION_STRING;
+var connString = process.env.DATABASE_URL;
 
 var client = new pg.Client(connString);
 client.connect(function(err) {
@@ -83,7 +83,7 @@ client.connect(function(err) {
     client.end();
   });
 });
-var sequelize = new Sequelize(process.env.PG_CONNECTION_STRING)
+var sequelize = new Sequelize(process.env.DATABASE_URL)
 
 
 module.exports = app;
