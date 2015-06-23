@@ -56,7 +56,7 @@ router.post('/paragraphs/:id/upvotes', function(req, res){
   pg.connect(connString, function(err, client, done){
     console.log("you're connected to the post request for paragraph id" + req.params.id)
     if (err) return console.log(err);
-    client.query("UPDATE paragraphs SET upvotes = upvotes + 1 WHERE id = $1", [req.params.id]);
+    client.query("UPDATE paragraphs SET upvotes = COALESCE(upvotes, 0) + 1 WHERE id = $1", [req.params.id]);
     var query = client.query("SELECT * FROM paragraphs WHERE id = $1", [req.params.id]);
     query.on('row', function(row) {
       results.push(row);
@@ -71,10 +71,11 @@ router.post('/paragraphs/:id/upvotes', function(req, res){
 
 router.post('/paragraphs/:id/downvotes', function(req, res){
   var results = [];
+  console.log(req.params.id)
   pg.connect(connString, function(err, client, done){
     console.log("you're connected to the post request for paragraph id" + req.params.id)
     if (err) return console.log(err);
-    client.query("UPDATE paragraphs SET downvotes = upvotes + 1 WHERE id = $1", [req.params.id]);
+    client.query("UPDATE paragraphs SET downvotes = COALESCE(downvotes, 0) + 1 WHERE id = $1", [req.params.id]);
     var query = client.query("SELECT * FROM paragraphs WHERE id = $1", [req.params.id]);
     query.on('row', function(row) {
       results.push(row);

@@ -21,7 +21,8 @@ function compare(a, b){
 }
 
 app.controller('mainController', function ($scope, $http){
-
+  $scope.searchTerm = "Dickens"
+  $scope.definitions = [{partOfSpeech: "noun", text: "Dickens, Charles John Huffam Pen name Boz. 1812-1870. British writer known for his tales of Victorian life and times. His works, which first appeared in serialized form, include The Pickwick Papers (1836-1837), Oliver Twist (1837-1838), and David Copperfield (1849-1850)."}];
   var wordnik_api_key;
   $http({method: 'GET', url: '/rest/getenv'})
   .success(function(data){
@@ -42,6 +43,7 @@ app.controller('mainController', function ($scope, $http){
   };
 
   $scope.defineFunction = function(searchTerm){
+
     console.log(searchTerm.split(" "))
     var searchFor = function(){
       if (searchTerm.split(" ").length >1){

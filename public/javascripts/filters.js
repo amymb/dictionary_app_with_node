@@ -69,7 +69,12 @@ app.filter('votesNull', function(){
 app.filter('abbreviate', function(){
   return function(word){
     if(!word) return;
-    var m = word.slice(0, 1)
-    return m + "."
+    if (word==="noun") return "n.";
+    if (word ==="adjective") return "adj.";
+    if (word ==="adverb") return "adv.";
+    if(word==="verb") return "v.";
+    if(word==="preposition") return "prep.";
+    if(word==="pronoun") return "pro."
+    if(word==="proper noun") return "pr.n."
   }
 })
