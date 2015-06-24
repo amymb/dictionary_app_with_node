@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module("myapp", ["quoteDisplayFilter", "ngSanitize", 'sliderApp', 'ui.bootstrap', "n3-line-chart"]);
+var app = angular.module("myapp", ["quoteDisplayFilter", "ngSanitize", 'sliderApp', 'ui.bootstrap', 'chartApp']);
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
@@ -21,6 +21,7 @@ function compare(a, b){
 }
 
 app.controller('mainController', function ($scope, $http){
+
   $scope.searchTerm = "Dickens"
   $scope.definitions = [{partOfSpeech: "noun", text: "Dickens, Charles John Huffam Pen name Boz. 1812-1870. British writer known for his tales of Victorian life and times. His works, which first appeared in serialized form, include The Pickwick Papers (1836-1837), Oliver Twist (1837-1838), and David Copperfield (1849-1850)."}];
   var wordnik_api_key;
@@ -37,10 +38,10 @@ app.controller('mainController', function ($scope, $http){
       $scope.numberofuses = data.length;
       $scope.quotes = (shuffleArray(data)).sort(compare);
     }).
-    error(function(data, status, headers, config) {
-        //In case your server respond with a 4XX or 5XX error code
-    });
-  };
+     error(function(data, status, headers, config) {
+         //In case your server respond with a 4XX or 5XX error code
+     });
+   };
 
   $scope.defineFunction = function(searchTerm){
     var searchFor = function(){
@@ -59,41 +60,7 @@ app.controller('mainController', function ($scope, $http){
   };
 })
 
-app.controller('chartController', function($scope) {
 
-  $scope.drawTable = function(quotes){
-    var data = function(quotes){
-      var quotesPerWork = {};
-      var arrayForQuotes = [];
-      var quotesPerBook = quotes.reduce(function(accum, incr){
-        (!accum[incr.title]) ? accum[incr.title] = 1 : accum[incr.title]+=1;
-        return quotesPerWork;
-      }, quotesPerWork);
-      for(var prop in quotesPerBook){
-        console.log(prop)
-        if (quotesPerBook.hasOwnProperty(prop)){
-          arrayForQuotes.push({title: prop, timesUsed: quotesPerBook.prop});
-        }
-      }
-      return arrayForQuotes
-    };
-
-    console.log(data(quotes))
-    $scope.data = data(quotes);
-    $scope.options = {
-      axes:{
-      x: {key: 'title'},
-      y: {type: 'linear', min: 0, max: 40}
-    },
-      series: [{
-        y: "val_0",
-        label: "Words words",
-        color: "#2ca02c",
-        type: "column"
-      }]
-    };
-  }
-})
 
 app.controller("quoteController", function($scope, $modal) {
   $scope.animationsEnabled = true;
@@ -116,6 +83,7 @@ app.controller("ModalDialogController", function ($scope, $modalInstance, $http,
   $scope.Quote = quote;
 
   $scope.upvote = function(){
+    event.preventDefault();
     $scope.Quote.upvotes += 1;
     var url = '/paragraphs/' + quote.id + '/upvotes';
     $http({method: 'POST', url: url})
@@ -128,6 +96,7 @@ app.controller("ModalDialogController", function ($scope, $modalInstance, $http,
   };
 
   $scope.downvote = function(){
+    event.preventDefault();
     $scope.Quote.downvotes +=1
     var url = '/paragraphs/' + quote.id + '/downvotes';
     $http({method: 'POST', url: url})

@@ -90,11 +90,11 @@ router.post('/paragraphs/:id/downvotes', function(req, res){
 
 
 
-router.get('/books', function(req, res){
+router.get('/quotations', function(req, res){
   var books = [];
   pg.connect(connString, function(err, client, done){
     if (err) return console.log(err);
-    var query = client.query("SELECT title, year, id FROM books");
+    var query = client.query("SELECT paragraphs.paragraphtext, books.title, books.year FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid;");
     query.on('row', function(row){
       books.push(row);
     });
@@ -111,6 +111,10 @@ router.get('/books', function(req, res){
 router.get('/slider', function(req, res){
   res.render('partials/slider.jade')
 });
+
+router.get('/chart', function(req, res){
+  res.render('partials/chart.jade');
+})
 
 
 router.get('/quote', function(req, res){

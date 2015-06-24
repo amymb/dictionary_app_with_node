@@ -6,7 +6,7 @@ app.filter('revisedQuotesForDisplay', function() {
     if (!quote || !quote.length) { return; }
     var searchTerm = document.getElementById("searchTerm").value;
     var index;
-    var array = quote.split(" ");
+    var array = quote.replace(/\n/g, " ").split(" ");
     var boldedWordInArray = array.map(function(value){
       if (value.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1){
         index = array.indexOf(value);

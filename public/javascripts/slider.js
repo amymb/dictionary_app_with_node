@@ -14,10 +14,12 @@ app.directive('abSlider', function($timeout) {
           scope.currentIndex = 0; // Initially the index is at the first image
 
           scope.next = function() {
+              event.preventDefault();
               scope.currentIndex < scope.quotes.length - 1 ? scope.currentIndex++ : scope.currentIndex = 0;
             };
 
           scope.prev = function() {
+            event.preventDefault();
             scope.currentIndex > 0 ? scope.currentIndex-- : scope.currentIndex = scope.quotes.length - 1;
           };
           scope.$watch('currentIndex', function() {

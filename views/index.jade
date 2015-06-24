@@ -9,7 +9,7 @@ block content
           form(class="navbar-form navbar-left" role="search")
             div(class="form-group")
               input(type="text" class="form-control" placeholder="Find a word" id="searchTerm" ng-model="formData")
-            button(type="submit" class="btn btn-default" ng-click = "searchFunction(formData); defineFunction(formData)") Submit
+            button(type="submit" class="btn btn-default" ng-click = "searchFunction(formData); defineFunction(searchTerm) ") Submit
       div(class="container-fluid")
         div(class="row")
           div(class="col-md-6")
@@ -35,12 +35,14 @@ block content
             div(class="number-circle" id="specific-word")
               div(class="circle-text") {{numberofuses}}
             br
-            div(class="text-descriptor") Paragraphs containing <span class="search-term">"{{searchTerm}}"</span>
+            div(class="text-descriptor") Paragraphs containing "<span class="search-term">{{searchTerm}}</span>"
         div(class="col-md-4")
           div(class="number-badge-3")
             div(class="number-circle" id="word-in-book")
               div(class="circle-text")
             br
-            div(class="text-descriptor") Paragraphs containing <br/> <span class="search-term"> "{{searchTerm}}"</span> in <br/>
-      div(class="row chart" ng-controller="chartController" ng-mouseover="drawTable(quotes)")
-        linechart(data="data" options="options")
+            div(class="text-descriptor") Paragraphs containing <br/> "<span class="search-term">{{searchTerm}}</span>" in <br/>
+      div(class="row chart")
+        h3(ng-hide="quotes") Total Paragraphs in Major Works
+        h3(ng-show="quotes") Paragraphs containing "<span class="search-term">{{searchTerm}}<span class="search-term">"
+        update-chart(quotes="quotes")
