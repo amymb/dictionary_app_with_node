@@ -1,4 +1,4 @@
-process.env.DATABASE_URL || require('./.env')
+process.env.HEROKU_POSTGRESQL_RED_URL || require('./.env')
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -68,7 +68,7 @@ app.use(function(err, req, res, next) {
 
 var pg = require('pg');
 
-var connString = process.env.DATABASE_URL;
+var connString = process.env.HEROKU_POSTGRESQL_RED_URL;
 
 var client = new pg.Client(connString);
 client.connect(function(err) {
@@ -83,7 +83,7 @@ client.connect(function(err) {
     client.end();
   });
 });
-var sequelize = new Sequelize(process.env.DATABASE_URL)
+var sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL)
 
 
 module.exports = app;

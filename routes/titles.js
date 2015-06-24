@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var connString = process.env.DATABASE_URL;
+var connString = process.env.HEROKU_POSTGRESQL_RED_URL;
 
 
 var client = new pg.Client(connString);
