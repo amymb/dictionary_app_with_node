@@ -44,7 +44,7 @@ block content
               div(class="number-circle" id="word-in-book")
                 div(class="circle-text") 385
               br
-              div(class="text-descriptor") Paragraphs containing <br/> "<span class="search-term">{{searchTerm}}</span>" in Letters From Dickens.
+              div(class="text-descriptor") Paragraphs containing <br/> "<span class="search-term">{{searchTerm}}</span>" in </br> Letters From Dickens.
             div(ng-repeat="book in quotesObject | orderBy: '-uses' | limitTo:1")
               div(class="number-circle" id="word-in-book")
                 div(class="circle-text"){{book.uses}}
