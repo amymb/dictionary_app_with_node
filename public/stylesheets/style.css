@@ -7,6 +7,10 @@ a {
   color: maroon;
 }
 
+ol{
+  text-align: center;
+}
+
 .landing-header{
   background-image: url("Charles-Dickens-poets-and-writers-35928206-2300-1437.jpg");
   height: 700px;
