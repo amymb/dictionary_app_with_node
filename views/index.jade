@@ -68,7 +68,7 @@ block content
               ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> <br/>{{quote.upvotes || 0}} votes
         div(class= "quotes-by-search" ng-show="quotes")
           h3 Most upvoted quotes containing {{searchTerm}}
-          div(ng-repeat="quote in quotes | orderBy: '-upvotes' | limitTo:5")
+          div(ng-repeat="quote in quotes | orderBy: 'upvotes' | limitTo:5")
             div(ng-click="showModal(quote)" ng-init="initFirst()")
               ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> {{quote.upvotes || 0}} votes
         br
