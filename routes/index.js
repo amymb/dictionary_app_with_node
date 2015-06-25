@@ -115,6 +115,10 @@ router.get('/slider', function(req, res){
 
 router.get('/chart', function(req, res){
   res.render('partials/chart.jade');
+});
+
+router.get('/chart2', function(req, res){
+  res.render('partials/chart.jade');
 })
 
 

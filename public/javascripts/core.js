@@ -30,14 +30,34 @@ app.controller('mainController', function ($scope, $http){
     wordnik_api_key = data.result;
   });
 
+
+
   $scope.searchFunction = function(searchTerm){
     $scope.searchTerm = searchTerm;
     var url = '/api/' + (searchTerm);
     var url2 = '/api/fulltext/' + (searchTerm);
     $http({method: 'GET', url: url}).
     success(function(data, status, headers, config) {
+      var c = function(){
+        console.log('im in c')
+        var m = {}
+        var object = [];
+        var p = data.reduce(function(accum, incr){
+          if(!m.hasOwnProperty(incr.title)) m[incr.title] = 1;
+          m[incr.title ] +=1;
+          return m
+        }, m)
+        console.log(p)
+        for(var prop in p){
+          object.push({title: prop, uses: p[prop]})
+        }
+        return object;
+      };
       $scope.numberofuses = data.length;
       $scope.quotes = (shuffleArray(data)).sort(compare);
+      $scope.quotesObject = c();
+      console.log(c())
+
     }).
      error(function(data, status, headers, config) {
          //In case your server respond with a 4XX or 5XX error code
@@ -57,8 +77,15 @@ app.controller('mainController', function ($scope, $http){
     $http({method: 'GET', url: url}).
     success(function(data, status, headers, config){
       $scope.definitions = data;
+    });
+    var url2 = "http://api.wordnik.com:80/v4/word.json/"+ searchFor() + "/frequency?useCanonical=false&startYear=1800&endYear=2012&api_key=" + wordnik_api_key;
+    $http({method: 'GET', url: url2 })
+    .success(function(data, status, headers, config){
+      console.log(data)
+      $scope.years = data;
     })
   };
+
 })
 
 

@@ -15,6 +15,7 @@ block content
           div(class="col-md-6")
           div(class="col-md-6 featured-quote")
             ab-slider(quotes="quotes")
+    br
     div(class="container")
       div(class="definitions")
         h3 {{searchTerm}} <em>{{definitions[0].partOfSpeech | abbreviate}}</em>
@@ -23,11 +24,12 @@ block content
       br
       br
       br
+      br
       div(class="row number-badges")
         div(class="col-md-4")
           div(class="number-badge-1")
             div(class="number-circle")
-              div(class="circle-text") 165000
+              div(class="circle-text") 139000
             br
             div(class="text-descriptor") Total paragraphs in <br />the complete works
         div(class="col-md-4")
@@ -38,23 +40,37 @@ block content
             div(class="text-descriptor") Paragraphs containing "<span class="search-term">{{searchTerm}}</span>"
         div(class="col-md-4")
           div(class="number-badge-3")
-            div(class="number-circle" id="word-in-book")
-              div(class="circle-text")
-            br
-            div(class="text-descriptor") Paragraphs containing <br/> "<span class="search-term">{{searchTerm}}</span>" in <br/>
+            div(class="hi" ng-hide="quotes")
+              div(class="number-circle" id="word-in-book")
+                div(class="circle-text") 385
+              br
+              div(class="text-descriptor") Paragraphs containing <br/> "<span class="search-term">{{searchTerm}}</span>" in Letters From Dickens.
+            div(ng-repeat="book in quotesObject | orderBy: '-uses' | limitTo:1")
+              div(class="number-circle" id="word-in-book")
+                div(class="circle-text"){{book.uses}}
+              br
+              div(class="text-descriptor") Paragraphs containing <br/> "<span class="search-term">{{searchTerm}}</span>" in <br/> {{book.title}}
+      br
+      br
+      br
       div(class="row chart")
         h3(ng-hide="quotes") Total Paragraphs in Major Works
-        h3(ng-show="quotes") Where "<span class="search-term">{{searchTerm}}</span class="search-term">" appears in the major works
+        h3(ng-show="quotes") Times "<span class="search-term">{{searchTerm}}</span class="search-term">" appears in Dickens' major novels
         update-chart(quotes="quotes")
-
+      br
+      br
+      br
       div(class="row rankings" ng-controller="quoteController")
         div(class="all-quotes" ng-hide="quotes" ng-init="m()")
           h3 Most upvoted quotes
           div(ng-repeat= "quote in allQuotes | orderBy: 'upvotes' | limitTo:5")
             div(ng-click="showModal(quote)" ng-init="initFirst()")
-              ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> {{quote.upvotes}} votes
+              ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> <br/>{{quote.upvotes || 0}} votes
         div(class= "quotes-by-search" ng-show="quotes")
           h3 Most upvoted quotes containing {{searchTerm}}
-          div(ng-repeat="quote in quotes | orderBy: 'upvotes' | limitTo:5")
+          div(ng-repeat="quote in quotes | orderBy: '-upvotes' | limitTo:5")
             div(ng-click="showModal(quote)" ng-init="initFirst()")
-              ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> {{quote.upvotes}} votes
+              ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> {{quote.upvotes || 0}} votes
+        br
+        br
+        br

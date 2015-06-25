@@ -15,15 +15,15 @@ app.filter('revisedQuotesForDisplay', function() {
         return value
         };
     });
-    if(boldedWordInArray.length >=50){
+    if(boldedWordInArray.length >=70){
       var newQuote = quote;
-      if (index >=25){
-        var spliceAt = index - 25;
-        var newQuoteBegin = boldedWordInArray.splice(spliceAt, 50);
+      if (index >=35){
+        var spliceAt = index - 35;
+        var newQuoteBegin = boldedWordInArray.splice(spliceAt, 70);
         newQuoteBegin.unshift("...")
         newQuote = newQuoteBegin.join(" ") + "...";
       }else{
-        newQuote = boldedWordInArray.splice(0, 50).join(" ") + "...";
+        newQuote = boldedWordInArray.splice(0, 70).join(" ") + "...";
       }
       return newQuote;
     }else{
