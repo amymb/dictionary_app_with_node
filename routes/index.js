@@ -7,11 +7,11 @@ var client = new pg.Client(connString)
 
 
 
-router.get('/paragraphs/:id', function(req, res) {
+router.get('/paragraphs', function(req, res) {
   var results = [];
   pg.connect(connString, function(err, client, done){
     if (err) return console.log(err);
-    var query = client.query("SELECT paragraphs.paragraphtext, paragraphs.upvotes, paragraphs.downvotes, books.title, books.year FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid WHERE paragraphs.id=$1", [req.params.id]);
+    var query = client.query("SELECT paragraphs.paragraphtext, paragraphs.upvotes, paragraphs.downvotes, books.title, books.year FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid");
     query.on('row', function (row){
       results.push(row);
     });
@@ -49,6 +49,7 @@ router.get('/api/:search', function(req, res, next) {
     });
   });
 });
+
 
 
 router.post('/paragraphs/:id/upvotes', function(req, res){

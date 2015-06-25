@@ -33,6 +33,7 @@ app.controller('mainController', function ($scope, $http){
   $scope.searchFunction = function(searchTerm){
     $scope.searchTerm = searchTerm;
     var url = '/api/' + (searchTerm);
+    var url2 = '/api/fulltext/' + (searchTerm);
     $http({method: 'GET', url: url}).
     success(function(data, status, headers, config) {
       $scope.numberofuses = data.length;
@@ -40,7 +41,7 @@ app.controller('mainController', function ($scope, $http){
     }).
      error(function(data, status, headers, config) {
          //In case your server respond with a 4XX or 5XX error code
-     });
+     })
    };
 
   $scope.defineFunction = function(searchTerm){
@@ -62,7 +63,7 @@ app.controller('mainController', function ($scope, $http){
 
 
 
-app.controller("quoteController", function($scope, $modal) {
+app.controller("quoteController", function($scope, $modal, $http) {
   $scope.animationsEnabled = true;
   $scope.showModal= function(quote){
     var modalInstance = $modal.open({
@@ -76,6 +77,13 @@ app.controller("quoteController", function($scope, $modal) {
       }
     });
     modalInstance.result.then();
+  }
+
+  $scope.m = function(){
+    $http({method: 'GET', url: '/paragraphs'}).
+    success(function(data){
+      $scope.allQuotes = data;
+    });
   }
 })
 

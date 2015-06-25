@@ -9,8 +9,9 @@ a {
 
 .landing-header{
   background-image: url("Charles-Dickens-poets-and-writers-35928206-2300-1437.jpg");
-  height: 600px;
+  height: 700px;
   position: relative;
+  responsive: true;
   background-position: center center,
   float: left;
   width:100%;
@@ -71,6 +72,7 @@ p.featured-quote:first-letter{
 
 .chart,
 .definitions,
+.rankings,
 .navbar,
 .modal-content{
   font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;

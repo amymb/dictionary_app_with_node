@@ -69,3 +69,11 @@ app.filter('abbreviate', function(){
     if(word==="proper noun") return "pr.n."
   }
 })
+
+app.filter('popularQuotes', function(){
+  return function(quote){
+    var array = quote.replace(/\n/g, " ").split(" ");
+    if(array.length < 30) return array.join(" ");
+    return array.splice(0, 30).join(" ") + "...";
+  }
+})

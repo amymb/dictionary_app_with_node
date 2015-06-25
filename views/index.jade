@@ -46,3 +46,15 @@ block content
         h3(ng-hide="quotes") Total Paragraphs in Major Works
         h3(ng-show="quotes") Where "<span class="search-term">{{searchTerm}}</span class="search-term">" appears in the major works
         update-chart(quotes="quotes")
+
+      div(class="row rankings" ng-controller="quoteController")
+        div(class="all-quotes" ng-hide="quotes" ng-init="m()")
+          h3 Most upvoted quotes
+          div(ng-repeat= "quote in allQuotes | orderBy: 'upvotes' | limitTo:5")
+            div(ng-click="showModal(quote)" ng-init="initFirst()")
+              ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> {{quote.upvotes}} votes
+        div(class= "quotes-by-search" ng-show="quotes")
+          h3 Most upvoted quotes containing {{searchTerm}}
+          div(ng-repeat="quote in quotes | orderBy: 'upvotes' | limitTo:5")
+            div(ng-click="showModal(quote)" ng-init="initFirst()")
+              ol <a href = #> "{{quote.paragraphtext|popularQuotes }}" </a> <em>{{quote.title}}</em> {{quote.upvotes}} votes
