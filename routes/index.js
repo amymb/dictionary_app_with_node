@@ -11,7 +11,7 @@ router.get('/paragraphs', function(req, res) {
   var results = [];
   pg.connect(connString, function(err, client, done){
     if (err) return console.log(err);
-    var query = client.query("SELECT paragraphs.paragraphtext, paragraphs.upvotes, paragraphs.downvotes, paragraphs.id, books.title, books.year FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid");
+    var query = client.query("SELECT paragraphs.paragraphtext, paragraphs.upvotes, paragraphs.downvotes, paragraphs.id, books.title, books.year FROM paragraphs INNER JOIN books ON books.id = paragraphs.bookid WHERE paragraphs.upvotes >= 1");
     query.on('row', function (row){
       results.push(row);
     });

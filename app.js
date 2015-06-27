@@ -11,7 +11,6 @@ var Sequelize = require('sequelize');
 
 var routes = require('./routes/index');
 
-var titles = require('./routes/titles');
 var app = express();
 
 // view engine setup
@@ -28,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.use('/', routes);
-app.use('/titles', titles);
+
 
 //sessions
 // app.use(express.cookieParser());
@@ -83,7 +82,7 @@ client.connect(function(err) {
     client.end();
   });
 });
-var sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL)
+
 
 
 module.exports = app;
